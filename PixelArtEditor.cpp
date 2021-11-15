@@ -1,6 +1,8 @@
 #include "PixelArtEditor.h"
 #include <QPushButton>
 #include "iostream"
+#include <qjsondocument.h>
+#include <qjsonobject.h>
 
 PixelArtEditor::PixelArtEditor(QWidget* parent) :
     QMainWindow(parent)
@@ -18,9 +20,14 @@ PixelArtEditor::PixelArtEditor(QWidget* parent) :
                 return;
             }
 
-            QString answer = reply->readAll();
+            //QString answer = reply->readAll();
+            //qDebug() << answer;
 
-            qDebug() << answer;
+            //QJsonDocument document = QJsonDocument::fromJson(reply->readAll());
+            //QJsonObject rootObj = document.object();
+            //qDebug() << rootObj;
+
+            
         }
     );
 }
@@ -28,6 +35,26 @@ PixelArtEditor::PixelArtEditor(QWidget* parent) :
 void PixelArtEditor::on_pushButton_clicked()
 {
     std::cout<<"hello";
+
+    /*
+    QJsonObject messageObject;
+    messageObject["content"] = "This is a chat message :)";
+
+    QJsonDocument messageDocument(messageObject);
+    QByteArray jsonData = messageDocument.toJson();
+
     request.setUrl(QUrl("http://127.0.0.1:8080/chat"));
-    manager->deleteResource(request);
+    manager->post(request, jsonData);
+    */
+
+    QJsonObject pixelObject;
+    pixelObject["x"] = 1;
+    pixelObject["y"] = 0;
+    pixelObject["color"] = "112255";
+
+    QJsonDocument pixelDocument(pixelObject);
+    QByteArray jsonData = pixelDocument.toJson();
+
+    request.setUrl(QUrl("http://127.0.0.1:8080/pixel"));
+    manager->post(request, jsonData);
 }
