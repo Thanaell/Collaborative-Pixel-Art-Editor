@@ -2,21 +2,27 @@
 #pragma once
 
 #include <QtWidgets/QMainWindow>
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
-#include "pixelcanvas.h"
+#include <qtimer.h>
+
+//#include "pixelcanvas.h"
+#include "RequestManager.h"
 
 class PixelArtEditor : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    PixelArtEditor(QWidget* parent = Q_NULLPTR);
+    PixelArtEditor(QWidget *parent = Q_NULLPTR);
 
 private:
-    QNetworkAccessManager* manager;
-    QNetworkRequest request;
-    PixelCanvas *pixelcanvas;
+    const int POLLING_COOLDOWN = 300;
+
+    QTimer *m_pollingTimer;
+    RequestManager *m_requestManager;
+
+    //PixelCanvas *pixelcanvas;
+
 public slots:
-    void on_pushButton_clicked();
+    void pollAllData();
+    void refreshAllData(const QJsonObject data);
 };

@@ -29,9 +29,15 @@
     <ClCompile Include="PixelArtEditor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RequestManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="PixelArtEditor.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="RequestManager.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

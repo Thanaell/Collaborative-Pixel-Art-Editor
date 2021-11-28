@@ -1,61 +1,34 @@
 #include "PixelArtEditor.h"
-#include <QPushButton>
-#include "iostream"
-#include <qjsondocument.h>
-#include <qjsonobject.h>
+
 #include "pixelcanvas.h"
 
 PixelArtEditor::PixelArtEditor(QWidget* parent) :
-    QMainWindow(parent), pixelcanvas(new PixelCanvas(this))
+    QMainWindow(parent),
+    m_pollingTimer(new QTimer(this)),
+    m_requestManager(new RequestManager())
+//    pixelcanvas(new PixelCanvas(this))
 {
-    QWidget* centralWidget = new QWidget();
+    QWidget *centralWidget = new QWidget();
     setCentralWidget(centralWidget);
-    QPushButton* button = new QPushButton(centralWidget);
-    QObject::connect(button, &QPushButton::clicked, this, &PixelArtEditor::on_pushButton_clicked);
 
-    manager = new QNetworkAccessManager();
-    QObject::connect(manager, &QNetworkAccessManager::finished,
-        this, [=](QNetworkReply* reply) {
-            if (reply->error()) {
-                qDebug() << reply->errorString();
-                return;
-            }
+    connect(m_pollingTimer, &QTimer::timeout, this, &PixelArtEditor::pollAllData);
+    m_pollingTimer->start(POLLING_COOLDOWN);
 
-            //QString answer = reply->readAll();
-            //qDebug() << answer;
-
-            //QJsonDocument document = QJsonDocument::fromJson(reply->readAll());
-            //QJsonObject rootObj = document.object();
-            //qDebug() << rootObj;
-
-            
-        }
+    // Bind the getAllData reply to the refreshAllData slot
+    QObject::connect(
+        m_requestManager,
+        &RequestManager::answerReceived,
+        this,
+        &PixelArtEditor::refreshAllData
     );
 }
 
-void PixelArtEditor::on_pushButton_clicked()
+void PixelArtEditor::pollAllData()
 {
-    std::cout<<"hello";
+    m_requestManager->getAllData();
+}
 
-    /*
-    QJsonObject messageObject;
-    messageObject["content"] = "This is a chat message :)";
-
-    QJsonDocument messageDocument(messageObject);
-    QByteArray jsonData = messageDocument.toJson();
-
-    request.setUrl(QUrl("http://127.0.0.1:8080/chat"));
-    manager->post(request, jsonData);
-    */
-
-    QJsonObject pixelObject;
-    pixelObject["x"] = 1;
-    pixelObject["y"] = 0;
-    pixelObject["color"] = "112255";
-
-    QJsonDocument pixelDocument(pixelObject);
-    QByteArray jsonData = pixelDocument.toJson();
-
-    request.setUrl(QUrl("http://127.0.0.1:8080/pixel"));
-    manager->post(request, jsonData);
+void PixelArtEditor::refreshAllData(const QJsonObject data)
+{
+    // TODO handle refresh widgets using the reply's data
 }

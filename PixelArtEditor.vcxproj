@@ -16,6 +16,10 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PixelArtEditor.cpp" />
+    <ClCompile Include="RequestManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="RequestManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5EE71F79-A4E7-4921-A728-7C30D2604358}</ProjectGuid>
