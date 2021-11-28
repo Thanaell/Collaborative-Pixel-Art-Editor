@@ -3,9 +3,10 @@
 #include "iostream"
 #include <qjsondocument.h>
 #include <qjsonobject.h>
+#include "pixelcanvas.h"
 
 PixelArtEditor::PixelArtEditor(QWidget* parent) :
-    QMainWindow(parent)
+    QMainWindow(parent), pixelcanvas(new PixelCanvas(this))
 {
     QWidget* centralWidget = new QWidget();
     setCentralWidget(centralWidget);

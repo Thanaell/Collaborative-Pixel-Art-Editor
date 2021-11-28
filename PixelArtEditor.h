@@ -4,6 +4,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include "pixelcanvas.h"
 
 class PixelArtEditor : public QMainWindow
 {
@@ -15,6 +16,7 @@ public:
 private:
     QNetworkAccessManager* manager;
     QNetworkRequest request;
+    PixelCanvas *pixelcanvas;
 public slots:
     void on_pushButton_clicked();
 };
