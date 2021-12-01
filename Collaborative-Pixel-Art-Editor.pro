@@ -11,11 +11,13 @@ CONFIG += c++11
 
 SOURCES += \
     PixelArtEditor.cpp \
+    RequestManager.cpp \
     main.cpp \
     pixelcanvas.cpp
 
 HEADERS += \
     PixelArtEditor.h \
+    RequestManager.h \
     pixelcanvas.h
 
 FORMS += \

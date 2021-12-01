@@ -29,7 +29,7 @@ void RequestManager::getAllData()
 Expects a JSON object with the following keys / values
 - "x" : int
 - "y" : int
-- "color" : string (RGB color in hexadecimal)
+- "m_color" : string (RGB m_color in hexadecimal)
 */
 void RequestManager::setPixel(const QJsonObject pixelObject)
 {
