@@ -24,6 +24,7 @@ PixelArtEditor::PixelArtEditor(QWidget* parent) :
     //m_requestManager->setPixel(3, 2, "F74521");
 }
 
+//called 3 times a second -> POLLING_COOLDOWN
 void PixelArtEditor::pollAllData()
 {
     m_requestManager->getAllData();
@@ -32,4 +33,6 @@ void PixelArtEditor::pollAllData()
 void PixelArtEditor::refreshAllData(const QJsonObject data)
 {
     // TODO handle refresh widgets using the reply's data
+    //JSON object with pixels and chat, and last 10 edited pixels --> do what is needed to refresh display
+    //Request Manager handles the requests
 }
