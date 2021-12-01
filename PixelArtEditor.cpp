@@ -1,7 +1,5 @@
 #include "PixelArtEditor.h"
 
-#include "pixelcanvas.h"
-
 PixelArtEditor::PixelArtEditor(QWidget* parent) :
     QMainWindow(parent),
     m_pollingTimer(new QTimer(this)),
@@ -21,6 +19,9 @@ PixelArtEditor::PixelArtEditor(QWidget* parent) :
         this,
         &PixelArtEditor::refreshAllData
     );
+
+    // Test for setting pixel
+    //m_requestManager->setPixel(3, 2, "F74521");
 }
 
 void PixelArtEditor::pollAllData()

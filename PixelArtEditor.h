@@ -4,7 +4,7 @@
 #include <QtWidgets/QMainWindow>
 #include <qtimer.h>
 
-//#include "pixelcanvas.h"
+#include "pixelcanvas.h"
 #include "RequestManager.h"
 
 class PixelArtEditor : public QMainWindow

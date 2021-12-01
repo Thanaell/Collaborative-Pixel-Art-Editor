@@ -25,14 +25,14 @@ void RequestManager::getAllData()
     });
 }
 
-/*
-Expects a JSON object with the following keys / values
-- "x" : int
-- "y" : int
-- "color" : string (RGB color in hexadecimal)
-*/
-void RequestManager::setPixel(const QJsonObject pixelObject)
+void RequestManager::setPixel(const int x, const int y, const QString color)
 {
+    QJsonObject pixelObject{
+        {"x", x},
+        {"y", y},
+        {"color", color}
+    };
+
     QJsonDocument pixelDocument(pixelObject);
     QByteArray jsonData = pixelDocument.toJson();
 
@@ -49,9 +49,10 @@ void RequestManager::setPixel(const QJsonObject pixelObject)
     });
 }
 
-// Expects a JSON object with a string set for "content" key
-void RequestManager::addMessage(const QJsonObject messageObject)
+void RequestManager::addMessage(const QString message)
 {
+    QJsonObject messageObject{ {"content", message} };
+
     QJsonDocument messageDocument(messageObject);
     QByteArray jsonData = messageDocument.toJson();
 

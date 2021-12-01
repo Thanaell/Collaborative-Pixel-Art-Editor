@@ -12,7 +12,7 @@ class PixelCanvas : public QWidget
     Q_OBJECT
 public:
     PixelCanvas(QWidget *parent = nullptr);
-    ~PixelCanvas();
+    //~PixelCanvas();
     // Create a QPixmap object that you will use to store the bitmap the user will draw [on].
     QPixmap m_pixmap;
 //    PixelCanvas(QWidget *parent = 0) : QWidget(parent), pressed(0) {

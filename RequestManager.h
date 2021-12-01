@@ -15,8 +15,8 @@ class RequestManager : public QObject
 public:
     RequestManager();
     void getAllData();
-    void setPixel(const QJsonObject pixelObject);
-    void addMessage(const QJsonObject messageObject);
+    void setPixel(const int x, const int y, const QString color);
+    void addMessage(const QString message);
     void resetChat();
     void resetImage();
 
