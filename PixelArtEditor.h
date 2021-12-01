@@ -20,7 +20,7 @@ private:
     QTimer *m_pollingTimer;
     RequestManager *m_requestManager;
 
-    //PixelCanvas *pixelcanvas;
+    PixelCanvas *m_pixelcanvas;
 
 public slots:
     void pollAllData();

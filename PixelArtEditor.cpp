@@ -5,8 +5,8 @@
 PixelArtEditor::PixelArtEditor(QWidget* parent) :
     QMainWindow(parent),
     m_pollingTimer(new QTimer(this)),
-    m_requestManager(new RequestManager())
-//    pixelcanvas(new PixelCanvas(this))
+    m_requestManager(new RequestManager()),
+    m_pixelcanvas(new PixelCanvas(this))
 {
     QWidget *centralWidget = new QWidget();
     setCentralWidget(centralWidget);
