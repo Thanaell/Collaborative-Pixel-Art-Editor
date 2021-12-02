@@ -5,6 +5,7 @@
 #include <qtimer.h>
 
 #include "pixelcanvas.h"
+#include "ChatWidget.h"
 #include "RequestManager.h"
 
 class PixelArtEditor : public QMainWindow
@@ -21,6 +22,7 @@ private:
     RequestManager *m_requestManager;
 
     PixelCanvas *m_pixelcanvas;
+    ChatWidget* m_chatWidget;
 
 public slots:
     void pollAllData();

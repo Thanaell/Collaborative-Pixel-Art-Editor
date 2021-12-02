@@ -35,6 +35,9 @@
     <ClCompile Include="pixelcanvas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ChatWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="PixelArtEditor.h">
@@ -44,6 +47,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="pixelcanvas.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ChatWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

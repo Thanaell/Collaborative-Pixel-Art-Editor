@@ -14,6 +14,7 @@
     <QtMoc Include="PixelArtEditor.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ChatWidget.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PixelArtEditor.cpp" />
     <ClCompile Include="pixelcanvas.cpp" />
@@ -24,6 +25,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="pixelcanvas.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="ChatWidget.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5EE71F79-A4E7-4921-A728-7C30D2604358}</ProjectGuid>

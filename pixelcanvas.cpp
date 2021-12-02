@@ -7,7 +7,8 @@
 #include <Qt>
 
 PixelCanvas::PixelCanvas(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+    m_pixmap(new QPixmap())
 {
     QDesktopWidget dw;
     this->setMinimumSize(dw.width()*0.35,dw.height()*0.35); //set minimum size of canvas

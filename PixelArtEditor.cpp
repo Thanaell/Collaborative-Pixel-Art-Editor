@@ -1,13 +1,23 @@
 #include "PixelArtEditor.h"
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QLabel>
 
 PixelArtEditor::PixelArtEditor(QWidget* parent) :
     QMainWindow(parent),
     m_pollingTimer(new QTimer(this)),
     m_requestManager(new RequestManager()),
-    m_pixelcanvas(new PixelCanvas(this))
+    m_pixelcanvas(new PixelCanvas(this)),
+    m_chatWidget(new ChatWidget(this))
 {
-    QWidget *centralWidget = new QWidget();
+    QWidget *centralWidget = new QWidget(this);
     setCentralWidget(centralWidget);
+    
+    QHBoxLayout* mainLayout = new QHBoxLayout(centralWidget);
+    //mainLayout->addWidget(m_pixelcanvas);
+    mainLayout->addWidget(m_chatWidget);
+
+
 
     connect(m_pollingTimer, &QTimer::timeout, this, &PixelArtEditor::pollAllData);
     m_pollingTimer->start(POLLING_COOLDOWN);
@@ -35,4 +45,17 @@ void PixelArtEditor::refreshAllData(const QJsonObject data)
     // TODO handle refresh widgets using the reply's data
     //JSON object with pixels and chat, and last 10 edited pixels --> do what is needed to refresh display
     //Request Manager handles the requests
+    QVariantMap dataMap = data.toVariantMap();
+    auto chat = dataMap["chat"].toMap()["messages"];
+    auto image = dataMap["image"];
+    auto lastPixels = dataMap["lastPixelsEdited"];
+
+    std::vector<QString> messages;
+    for (auto message : chat.toList()) {
+        qDebug()<<message;
+        messages.push_back(message.toString());
+    }
+    m_chatWidget->setMessages(messages);
+
+    
 }
