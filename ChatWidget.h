@@ -9,5 +9,8 @@ public:
 	void setMessages(std::vector<QString>);
 private:
 	QVBoxLayout *m_messagesLayout;
+
+signals:
+	void messageSent(QString);
 };
 

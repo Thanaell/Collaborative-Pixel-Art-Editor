@@ -15,6 +15,8 @@ class RequestManager : public QObject
 public:
     RequestManager();
     void getAllData();
+    
+public slots:
     void setPixel(const int x, const int y, const QString color);
     void addMessage(const QString message);
     void resetChat();
