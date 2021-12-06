@@ -23,7 +23,7 @@ public slots:
     void resetImage();
 
 private:
-    const QString API_PATH = "http://127.0.0.1:8080";
+    const QString API_PATH = "https://pixel-art.undeb.io";
 
     QNetworkAccessManager *m_manager;
 
