@@ -48,9 +48,12 @@ ChatWidget::ChatWidget(QWidget* parent) :
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
 
     QWidget* messagesWidget = new QWidget(this);
-    m_messagesLayout = new QVBoxLayout(messagesWidget);
+    QVBoxLayout* mainMessagesLayout = new QVBoxLayout(messagesWidget);
+    m_messagesLayout = new QVBoxLayout(this);
     m_messagesLayout->setContentsMargins(0, 0, 0, 0);
     m_messagesLayout->setSpacing(2);
+    mainMessagesLayout->addLayout(m_messagesLayout);
+    mainMessagesLayout->addStretch();
     auto scrollArea = new QScrollArea(this);
     scrollArea->setMinimumSize(200,400);    
     scrollArea->setWidget(messagesWidget);
