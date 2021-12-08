@@ -4,6 +4,7 @@
 #include "QLabel"
 #include "qlineedit.h"
 #include <qpushbutton.h>
+#include <qscrollbar.h>
 
 void hideAllWidgets(QLayout& layout)
 {
@@ -54,11 +55,11 @@ ChatWidget::ChatWidget(QWidget* parent) :
     m_messagesLayout->setSpacing(2);
     mainMessagesLayout->addLayout(m_messagesLayout);
     mainMessagesLayout->addStretch();
-    auto scrollArea = new QScrollArea(this);
-    scrollArea->setMinimumSize(200,400);    
-    scrollArea->setWidget(messagesWidget);
-    scrollArea->setWidgetResizable(true);
-    scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    m_scrollArea = new QScrollArea(this);
+    m_scrollArea->setMinimumSize(200,400);    
+    m_scrollArea->setWidget(messagesWidget);
+    m_scrollArea->setWidgetResizable(true);
+    m_scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
     QWidget* writeMessageWidget = new QWidget(this);
     QHBoxLayout* writeMessageLayout = new QHBoxLayout(writeMessageWidget);
@@ -67,11 +68,12 @@ ChatWidget::ChatWidget(QWidget* parent) :
     writeMessageLayout->addWidget(writeArea);
     writeMessageLayout->addWidget(validateButton);
     QObject::connect(validateButton, &QPushButton::clicked,this, [this,writeArea](){
+        //m_messagesLayout->addWidget(new QLabel(writeArea->text(), this)); //locally adding message
         emit messageSent(writeArea->text());
         writeArea->setText("");
         });
     
-    mainLayout->addWidget(scrollArea);
+    mainLayout->addWidget(m_scrollArea);
     mainLayout->addWidget(writeMessageWidget);
 
 }
@@ -82,4 +84,5 @@ void ChatWidget::setMessages(std::vector<QString> messages) {
     for (auto message : messages) {
         m_messagesLayout->addWidget(new QLabel(message, this));
     }
+    //m_scrollArea->verticalScrollBar()->setValue(m_scrollArea->verticalScrollBar()->maximum());
 }
