@@ -14,7 +14,7 @@ class PixelCanvas : public QWidget
 {
     Q_OBJECT
 public:
-    PixelCanvas(QWidget *parent = nullptr);
+    PixelCanvas(QWidget *parent, RequestManager *requestManager);
     ~PixelCanvas();
     void updatePixelColor(int, QString); //update a pixel color
     void updatePixelOutline(int, QString); //update a pixel's outline color
@@ -32,8 +32,6 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
-    RequestManager *m_requestManager;
-
     QList<PixelObject> m_pixelList;
     int m_pixelRez = 1024;
     int m_pixelSize = 32;

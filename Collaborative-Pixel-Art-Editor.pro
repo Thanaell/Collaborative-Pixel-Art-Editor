@@ -12,6 +12,7 @@ CONFIG += c++11
 SOURCES += \
     PixelArtEditor.cpp \
     RequestManager.cpp \
+    colorselectorwidget.cpp \
     main.cpp \
     pixelcanvas.cpp \
     ChatWidget.cpp \
@@ -20,6 +21,7 @@ SOURCES += \
 HEADERS += \
     PixelArtEditor.h \
     RequestManager.h \
+    colorselectorwidget.h \
     pixelcanvas.h \
     ChatWidget.h \
     pixelobject.h

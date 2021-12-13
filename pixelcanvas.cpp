@@ -1,5 +1,6 @@
 #include "pixelcanvas.h"
 #include "pixelobject.h"
+#include "RequestManager.h"
 
 #include <QDesktopWidget>
 #include <QPainter>
@@ -9,9 +10,8 @@
 
 #include <QDebug>
 
-PixelCanvas::PixelCanvas(QWidget *parent)
-    : QWidget(parent),
-      m_requestManager(new RequestManager())
+PixelCanvas::PixelCanvas(QWidget *parent, RequestManager *requestManager)
+    : QWidget(parent)
 {
     QDesktopWidget dw;
     this->setFixedSize(m_pixelRez,m_pixelRez); //set fixed size of canvas
@@ -70,7 +70,6 @@ void PixelCanvas::paintEvent(QPaintEvent *) {
     }
 
     if(outlinedPixels.size() > 0) {
-        qDebug() << outlinedPixels.size();
         //need to draw the highlighted pixels again over the rest of the grid
         for(int i = 0; i < outlinedPixels.size(); i++){
             int pixelAt  = outlinedPixels.at(i);
@@ -122,9 +121,17 @@ void PixelCanvas::resizeEvent(QResizeEvent *) {
 void PixelCanvas::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
-        //check which pixel we are modifying (0-m_pixelRez)
-
-        //update that pixel's color will
+        //check which pixel we are currently over (0-m_pixelRez)
+        for (int i = 0; i < m_pixelList.size(); i++) {
+            //check if over a pixel
+            if(getPixelPath(i).contains(event->pos())) {
+                //change pixel color
+                //m_pixelList[i].setPixelColor(mySelectedColor);
+                //send update to server
+                //QString pixelColor = m_pixelList[i].getPixelColor().name(QColor::HexRgb);
+                //m_requestManager->setPixel(i, pixelColor);
+            }
+        }
     }
 }
 
@@ -135,12 +142,10 @@ void PixelCanvas::mouseMoveEvent(QMouseEvent *event)
     for (int i = 0; i < m_pixelList.size(); i++) {
         //check if over a pixel
         if(getPixelPath(i).contains(event->pos())) {
-            PixelObject pixel = m_pixelList.at(i);
-
 //            //if clicking a button change the pixel color
 //            if (event->buttons() & Qt::LeftButton){
 //                //change pixel color
-//                m_pixelList[i].setPixelColor(myFillColor);
+//                m_pixelList[i].setPixelColor(mySelectedColor);
 //                //send update to server
 //                QString pixelColor = m_pixelList[i].getPixelColor().name(QColor::HexRgb);
 //                m_requestManager->setPixel(i, pixelColor);

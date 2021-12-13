@@ -7,15 +7,19 @@ PixelArtEditor::PixelArtEditor(QWidget* parent) :
     QMainWindow(parent),
     m_pollingTimer(new QTimer(this)),
     m_requestManager(new RequestManager()),
-    m_pixelcanvas(new PixelCanvas(this)),
+    m_colorselectorwidget(new ColorSelectorWidget(this)),
+    m_pixelcanvas(new PixelCanvas(this, m_requestManager)),
     m_chatWidget(new ChatWidget(this))
 {
     QWidget *centralWidget = new QWidget(this);
     setCentralWidget(centralWidget);
     
     QHBoxLayout* mainLayout = new QHBoxLayout(centralWidget);
+    QVBoxLayout *rightLayout = new QVBoxLayout();
     mainLayout->addWidget(m_pixelcanvas);
-    mainLayout->addWidget(m_chatWidget);
+    rightLayout->addWidget(m_colorselectorwidget);
+    rightLayout->addWidget(m_chatWidget);
+    mainLayout->addLayout(rightLayout);
     QObject::connect(m_chatWidget, &ChatWidget::messageSent, m_requestManager, &RequestManager::addMessage);
 
 
