@@ -51,9 +51,8 @@ ChatWidget::ChatWidget(QWidget* parent) :
     QWidget* messagesWidget = new QWidget(this);
     QVBoxLayout* mainMessagesLayout = new QVBoxLayout(messagesWidget);
     m_messagesLayout = new QVBoxLayout(this);
-    m_messagesLayout->setContentsMargins(0, 0, 0, 0);
-    m_messagesLayout->setSpacing(2);
-    mainMessagesLayout->addLayout(m_messagesLayout);
+    m_messagesLayout->setSpacing(10);
+    mainMessagesLayout->addLayout(m_messagesLayout, Qt::AlignTop);
     mainMessagesLayout->addStretch();
     m_scrollArea = new QScrollArea(this);
     m_scrollArea->setMinimumSize(200,400);    
@@ -65,6 +64,7 @@ ChatWidget::ChatWidget(QWidget* parent) :
     QHBoxLayout* writeMessageLayout = new QHBoxLayout(writeMessageWidget);
     QLineEdit* writeArea = new QLineEdit();
     QPushButton* validateButton = new QPushButton("SEND");
+    validateButton->setMinimumSize(100, 50);
     writeMessageLayout->addWidget(writeArea);
     writeMessageLayout->addWidget(validateButton);
     QObject::connect(validateButton, &QPushButton::clicked,this, [this,writeArea](){
@@ -76,13 +76,26 @@ ChatWidget::ChatWidget(QWidget* parent) :
     mainLayout->addWidget(m_scrollArea);
     mainLayout->addWidget(writeMessageWidget);
 
+    m_messageCount = 0;
+
 }
 void ChatWidget::setMessages(std::vector<QString> messages) {
 
     //TODO : better to only go from last received
+  
     clearLayout(*m_messagesLayout);
+    int newMessageCount = 0;
     for (auto message : messages) {
-        m_messagesLayout->addWidget(new QLabel(message, this));
+        newMessageCount++;
+        auto messageLabel = new QLabel("\n " +message + "\n", this);
+        messageLabel->setAlignment(Qt::AlignVCenter);
+        m_messagesLayout->addWidget(messageLabel);
+    }
+    
+    if (newMessageCount != m_messageCount){
+        m_scrollArea->verticalScrollBar()->setValue(m_scrollArea->verticalScrollBar()->maximum());
+        m_messageCount = newMessageCount;
     }
     //m_scrollArea->verticalScrollBar()->setValue(m_scrollArea->verticalScrollBar()->maximum());
 }
+
