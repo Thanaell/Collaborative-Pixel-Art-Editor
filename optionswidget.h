@@ -1,5 +1,5 @@
-#ifndef COLORSELECTORWIDGET_H
-#define COLORSELECTORWIDGET_H
+#ifndef OPTIONSWIDGET_H
+#define OPTIONSWIDGET_H
 
 #include "pixelcanvas.h"
 #include <QWidget>
@@ -8,13 +8,11 @@
 #include <QPushButton>
 #include <QColorDialog>
 
-class ColorSelectorWidget : public QWidget
+class OptionsWidget : public QWidget
 {
     Q_OBJECT
 public:
-    ColorSelectorWidget(QWidget* parent = nullptr, PixelCanvas *pixelCanvas = nullptr);
-signals:
-    void colorChanged(QString color);
+    OptionsWidget(QWidget* parent = nullptr, PixelCanvas *pixelCanvas = nullptr);
 private slots:
     void selectColor();
     void eraseColor();
@@ -30,4 +28,4 @@ private:
     PixelCanvas *m_pixelCanvas;
 };
 
-#endif // COLORSELECTORWIDGET_H
+#endif // OPTIONSWIDGET_H

@@ -1,4 +1,4 @@
-#include "colorselectorwidget.h"
+#include "optionswidget.h"
 #include "pixelcanvas.h"
 
 #include <QDebug>
@@ -8,7 +8,7 @@
 #include <QPushButton>
 #include <QPalette>
 
-ColorSelectorWidget::ColorSelectorWidget(QWidget* parent, PixelCanvas *pixelCanvas) :
+OptionsWidget::OptionsWidget(QWidget* parent, PixelCanvas *pixelCanvas) :
     QWidget(parent)
 {
     QWidget* colorSelectorWidget = new QWidget(this);
@@ -36,7 +36,7 @@ ColorSelectorWidget::ColorSelectorWidget(QWidget* parent, PixelCanvas *pixelCanv
     connect(m_eraseButton,SIGNAL(clicked()),this, SLOT(eraseColor()));
 }
 
-void ColorSelectorWidget::selectColor() {
+void OptionsWidget::selectColor() {
     QColor color = QColorDialog::getColor(Qt::white, this );
     m_lastSelectedColor = color;
     if (color.isValid()){
@@ -46,7 +46,7 @@ void ColorSelectorWidget::selectColor() {
     }
 }
 
-void ColorSelectorWidget::eraseColor() {
+void OptionsWidget::eraseColor() {
     QColor highlight = Qt::yellow;
     QColor currentHighlight = m_eraseButton->palette().color(QPalette::Button).name();
     if(highlight != currentHighlight) {
@@ -67,7 +67,7 @@ void ColorSelectorWidget::eraseColor() {
     }
 }
 
-void ColorSelectorWidget::updateButtonColor(QColor color) {
+void OptionsWidget::updateButtonColor(QColor color) {
     //update button color
     m_colorButtonStyle = QString("background-color: %1").arg(color.name());
     m_colorButton->setStyleSheet(m_colorButtonStyle);
