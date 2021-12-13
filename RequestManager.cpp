@@ -2,7 +2,7 @@
 
 RequestManager::RequestManager() : m_manager(new QNetworkAccessManager())
 {
-    // Nothing to do here :)
+    setPixel(35, "yooooooo");
 }
 
 void RequestManager::getAllData()

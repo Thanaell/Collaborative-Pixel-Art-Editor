@@ -38,6 +38,12 @@
     <ClCompile Include="ChatWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="pixelobject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="colorselectorwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="PixelArtEditor.h">
@@ -52,5 +58,13 @@
     <QtMoc Include="ChatWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="colorselectorwidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pixelobject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

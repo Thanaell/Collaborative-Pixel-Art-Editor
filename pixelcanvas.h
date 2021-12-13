@@ -9,6 +9,7 @@
 #include <QPixmap>
 #include <QPainter>
 #include <QPaintEvent>
+#include <qpainterpath.h>
 
 class PixelCanvas : public QWidget
 {
