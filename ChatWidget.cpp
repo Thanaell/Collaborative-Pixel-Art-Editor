@@ -83,8 +83,6 @@ ChatWidget::ChatWidget(QWidget* parent) :
     mainLayout->addWidget(m_scrollArea);
     mainLayout->addWidget(writeMessageWidget);
 
-    m_messageCount = 0;
-
 }
 void ChatWidget::setMessages(std::vector<QString> messages) {
     clearLayout(*m_messagesLayout);
