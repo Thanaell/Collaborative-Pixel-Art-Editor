@@ -24,6 +24,9 @@ public:
     QPainterPath getPixelPath(int);
     QColor mySelectedColor = Qt::black; //color which is selected
     int myCurrentPixel = 0; //pixel currently hovering over
+    // Create a QPixmap object that you will use to store the bitmap the user will draw [on].
+    QPixmap myPixmap;
+
 protected:
     void mousePressEvent(QMouseEvent *event) override;
 //    void mouseReleaseEvent(QMouseEvent *event) override;
@@ -40,8 +43,6 @@ private:
     QImage m_image; //eventual image output
     bool m_mouseIsPressed; //true if user presses mouse click
     RequestManager *m_requestManager;
-    // Create a QPixmap object that you will use to store the bitmap the user will draw [on].
-    QPixmap m_pixmap;
 };
 
 #endif // PIXELCANVAS_H

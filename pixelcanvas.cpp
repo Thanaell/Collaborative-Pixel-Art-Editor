@@ -51,7 +51,7 @@ PixelCanvas::~PixelCanvas() {}
 //paint event will redraw the shapes in path
 void PixelCanvas::paintEvent(QPaintEvent *) {
     QPainter painter(this);
-    painter.drawPixmap(0, 0, m_pixmap);
+    painter.drawPixmap(0, 0, myPixmap);
 
     QList <int> outlinedPixels;
 
@@ -123,13 +123,13 @@ void PixelCanvas::changeSelectedColor(QString selectedColor) {
 
 //override resize event whenever the canvas is resized
 void PixelCanvas::resizeEvent(QResizeEvent *) {
-    auto newRect = m_pixmap.rect().united(rect());
-    if (newRect == m_pixmap.rect()) return;
+    auto newRect = myPixmap.rect().united(rect());
+    if (newRect == myPixmap.rect()) return;
     QPixmap newPixmap(newRect.size());
     QPainter painter(&newPixmap);
     painter.fillRect(newPixmap.rect(), Qt::white);
-    painter.drawPixmap(0, 0, m_pixmap);
-    m_pixmap = newPixmap;
+    painter.drawPixmap(0, 0, myPixmap);
+    myPixmap = newPixmap;
 }
 
 //override mousePressEvent to either 'draw' or 'modify' canvas

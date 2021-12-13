@@ -25,6 +25,9 @@ private:
     OptionsWidget *m_optionswidget;
     ChatWidget* m_chatWidget;
 
+protected:
+    void closeEvent(QCloseEvent *event) override;
+
 public slots:
     void pollAllData();
     void refreshAllData(const QJsonObject data);

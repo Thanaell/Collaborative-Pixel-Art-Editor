@@ -16,6 +16,7 @@ public:
 private slots:
     void selectColor();
     void eraseColor();
+    void saveImage();
 private:
     QVBoxLayout *m_colorsLayout;
     QString m_colorButtonStyle;

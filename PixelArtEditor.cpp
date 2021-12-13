@@ -2,6 +2,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QMessageBox>
 
 PixelArtEditor::PixelArtEditor(QWidget* parent) :
     QMainWindow(parent),
@@ -63,4 +64,22 @@ void PixelArtEditor::refreshAllData(const QJsonObject data)
     m_chatWidget->setMessages(messages);
 
     
+}
+
+//override closeEvent
+//closeEvent will prompt the user with a message box
+// YES will quit the application
+// NO will continue the application
+void PixelArtEditor::closeEvent(QCloseEvent *event)
+{
+    qDebug("quit file");
+
+    // Display a message box : Yes or No, Yes = QUIT and No = stay in application
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Urgent message", "Quit?", QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        event->accept();
+    } else {
+        event->ignore();
+    }
 }
