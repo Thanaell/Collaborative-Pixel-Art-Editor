@@ -43,7 +43,6 @@ PixelCanvas::PixelCanvas(QWidget *parent, RequestManager *requestManager)
 
     //display update
     update();
-    mySelectedColor = Qt::blue;
 }
 
 PixelCanvas::~PixelCanvas() {}
