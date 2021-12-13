@@ -7,25 +7,25 @@
 #include <QColorDialog>
 #include <QPushButton>
 
-ColorSelectorWidget::ColorSelectorWidget(QWidget* parent) :
-    QWidget(parent), pixelCanvas(new PixelCanvas())
+ColorSelectorWidget::ColorSelectorWidget(QWidget* parent, PixelCanvas *pixelCanvas) :
+    QWidget(parent)
 {
     QWidget* colorSelectorWidget = new QWidget(this);
+    m_pixelCanvas = pixelCanvas;
 
-    button = new QPushButton;
-    button->setFixedSize(QSize(62, 62));
+    m_button = new QPushButton;
+    m_button->setFixedSize(QSize(62, 62));
 
-    colorLabel = new QLabel();
+    m_colorLabel = new QLabel();
 
 
     updateButtonColor(Qt::white);
 
     QHBoxLayout* colorsArea = new QHBoxLayout(colorSelectorWidget);
-    colorsArea->addWidget(button);
-    colorsArea->addWidget(colorLabel);
+    colorsArea->addWidget(m_button);
+    colorsArea->addWidget(m_colorLabel);
     this->setMinimumHeight(100); //set min height of color selector
-
-    connect(button,SIGNAL(clicked()),this,SLOT(selectColor()));
+    connect(m_button,SIGNAL(clicked()),this, SLOT(selectColor()));
 }
 
 void ColorSelectorWidget::selectColor() {
@@ -34,15 +34,15 @@ void ColorSelectorWidget::selectColor() {
         qDebug() << "Color Choosen : " << color.name();
         updateButtonColor(color.name());
         //update the selected color on pixelCanvas
-        pixelCanvas->changeSelectedColor(color.name());
+        m_pixelCanvas->changeSelectedColor(color.name());
     }
 }
 
 void ColorSelectorWidget::updateButtonColor(QColor color) {
     //update button color
     m_buttonStyle = QString("background-color: %1").arg(color.name());
-    button->setStyleSheet(m_buttonStyle);
+    m_button->setStyleSheet(m_buttonStyle);
 
     //update corresponding label
-    colorLabel->setText(QString("%1").arg(color.name()));
+    m_colorLabel->setText(QString("%1").arg(color.name()));
 }

@@ -21,9 +21,8 @@ private:
 
     QTimer *m_pollingTimer;
     RequestManager *m_requestManager;
-
-    ColorSelectorWidget *m_colorselectorwidget;
     PixelCanvas *m_pixelcanvas;
+    ColorSelectorWidget *m_colorselectorwidget;
     ChatWidget* m_chatWidget;
 
 public slots:
