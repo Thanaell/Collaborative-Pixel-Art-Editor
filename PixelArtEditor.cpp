@@ -7,8 +7,8 @@ PixelArtEditor::PixelArtEditor(QWidget* parent) :
     QMainWindow(parent),
     m_pollingTimer(new QTimer(this)),
     m_requestManager(new RequestManager()),
-    m_colorselectorwidget(new ColorSelectorWidget(this)),
     m_pixelcanvas(new PixelCanvas(this, m_requestManager)),
+    m_colorselectorwidget(new ColorSelectorWidget(this, m_pixelcanvas)),
     m_chatWidget(new ChatWidget(this))
 {
     QWidget *centralWidget = new QWidget(this);

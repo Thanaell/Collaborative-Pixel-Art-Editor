@@ -14,6 +14,9 @@ PixelCanvas::PixelCanvas(QWidget *parent, RequestManager *requestManager)
     : QWidget(parent)
 {
     QDesktopWidget dw;
+
+    m_requestManager = requestManager;
+
     this->setFixedSize(m_pixelRez,m_pixelRez); //set fixed size of canvas
     setMouseTracking(true);
 
@@ -31,6 +34,7 @@ PixelCanvas::PixelCanvas(QWidget *parent, RequestManager *requestManager)
 
         col++;
     }
+
     //display update
     update();
     mySelectedColor = Qt::blue;
@@ -63,7 +67,6 @@ void PixelCanvas::paintEvent(QPaintEvent *) {
         painter.setBrush(brush);
 
         painter.drawRect(pixelRect);
-        painter.fillRect(pixelRect, brush);
 
         if(pixel.getPixelOutlineColor() != m_gridColor) {
             outlinedPixels.append(i);
@@ -81,8 +84,12 @@ void PixelCanvas::paintEvent(QPaintEvent *) {
             pen.setWidth(2);
             pen.setColor(pixel.getPixelOutlineColor());
 
+            QBrush brush;
+            brush.setColor(Qt::transparent);
+            brush.setStyle(Qt::SolidPattern);
+
             painter.setPen(pen);
-            painter.fillRect(pixelRect, Qt::transparent);
+            painter.setBrush(brush);
 
             painter.drawRect(pixelRect);
         }
@@ -132,8 +139,8 @@ void PixelCanvas::mousePressEvent(QMouseEvent *event)
                 qDebug()<<"changing pixel color "<< mySelectedColor.name();
                 m_pixelList[i].setPixelColor(mySelectedColor);
                 //send update to server
-                //QString pixelColor = m_pixelList[i].getPixelColor().name(QColor::HexRgb);
-                //m_requestManager->setPixel(i, pixelColor);
+                QString pixelColor = m_pixelList[i].getPixelColor().name(QColor::HexRgb);
+                m_requestManager->setPixel(i, pixelColor);
                 update();
             }
         }
@@ -153,8 +160,8 @@ void PixelCanvas::mouseMoveEvent(QMouseEvent *event)
                 m_pixelList[i].setPixelColor(mySelectedColor);
                 qDebug() << "my selected color" << mySelectedColor.name();
 //                //send update to server
-//                QString pixelColor = m_pixelList[i].getPixelColor().name(QColor::HexRgb);
-//                m_requestManager->setPixel(i, pixelColor);
+                QString pixelColor = m_pixelList[i].getPixelColor().name(QColor::HexRgb);
+                m_requestManager->setPixel(i, pixelColor);
                 update();
             }
 
