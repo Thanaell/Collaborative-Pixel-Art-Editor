@@ -20,9 +20,10 @@ private:
     QVBoxLayout *m_colorsLayout;
     QString m_colorButtonStyle;
     QPushButton *m_colorButton;
+    QLabel *m_colorLabel;
     QString m_eraseButtonStyle;
     QPushButton *m_eraseButton;
-    QLabel *m_colorLabel;
+    QPushButton *m_saveButton;
     void updateButtonColor(QColor);
     QColor m_lastSelectedColor;
     PixelCanvas *m_pixelCanvas;

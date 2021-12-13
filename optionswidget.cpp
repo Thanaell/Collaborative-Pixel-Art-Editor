@@ -17,11 +17,13 @@ OptionsWidget::OptionsWidget(QWidget* parent, PixelCanvas *pixelCanvas) :
     m_colorButton = new QPushButton;
     m_colorButton->setFixedSize(QSize(62, 62));
 
+    m_colorLabel = new QLabel();
+
     m_eraseButton = new QPushButton;
     m_eraseButton->setIcon(QIcon(":/Images/eraser.png"));
     m_eraseButton->setIconSize(QSize(62, 62));
 
-    m_colorLabel = new QLabel();
+    m_saveButton
 
     updateButtonColor(Qt::black);
 
