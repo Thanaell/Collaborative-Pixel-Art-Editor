@@ -13,7 +13,6 @@ class ColorSelectorWidget : public QWidget
     Q_OBJECT
 public:
     ColorSelectorWidget(QWidget* parent = nullptr);
-    PixelCanvas *pixelCanvas;
 private slots:
     void selectColor();
 private:
@@ -21,6 +20,7 @@ private:
     QString m_buttonStyle;
     QPushButton *button;
     QLabel *colorLabel;
+    PixelCanvas *pixelCanvas;
     void updateButtonColor(QColor);
 };
 

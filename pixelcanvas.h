@@ -15,14 +15,14 @@ class PixelCanvas : public QWidget
 {
     Q_OBJECT
 public:
-    PixelCanvas(QWidget *parent, RequestManager *requestManager);
+    PixelCanvas(QWidget *parent = nullptr, RequestManager *requestManager = nullptr);
     ~PixelCanvas();
     void updatePixelColor(int, QString); //update a pixel color
     void updatePixelOutline(int, QString); //update a pixel's outline color
     void resetPixelOutline(int); //reset a pixel's outline color
-    void changeSelectedColor(QColor); //change the color we have in hand
+    void changeSelectedColor(QString); //change the color we have in hand
     QPainterPath getPixelPath(int);
-    QColor mySelectedColor = Qt::white; //color which is selected
+    QColor mySelectedColor; //color which is selected
     int myCurrentPixel = 0; //pixel currently hovering over
 
 protected:

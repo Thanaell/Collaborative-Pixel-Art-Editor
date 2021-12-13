@@ -81,6 +81,7 @@ void PixelCanvas::paintEvent(QPaintEvent *) {
             pen.setColor(pixel.getPixelOutlineColor());
 
             painter.setPen(pen);
+            painter.fillRect(pixelRect, Qt::transparent);
 
             painter.drawRect(pixelRect);
         }
@@ -102,8 +103,9 @@ void PixelCanvas::resetPixelOutline(int pixelNum) {
     m_pixelList[pixelNum].setPixelOutlineColor(m_gridColor);
 }
 
-void PixelCanvas::changeSelectedColor(QColor selectedColor) {
-    mySelectedColor = selectedColor;
+void PixelCanvas::changeSelectedColor(QString selectedColor) {
+    mySelectedColor = QColor(selectedColor);
+    qDebug() << "update selected color: " << mySelectedColor.name();
 }
 
 //override resize event whenever the canvas is resized
@@ -126,10 +128,12 @@ void PixelCanvas::mousePressEvent(QMouseEvent *event)
             //check if over a pixel
             if(getPixelPath(i).contains(event->pos())) {
                 //change pixel color
-                //m_pixelList[i].setPixelColor(mySelectedColor);
+                qDebug()<<"changing pixel color "<< mySelectedColor.name();
+                m_pixelList[i].setPixelColor(mySelectedColor);
                 //send update to server
                 //QString pixelColor = m_pixelList[i].getPixelColor().name(QColor::HexRgb);
                 //m_requestManager->setPixel(i, pixelColor);
+                update();
             }
         }
     }
@@ -143,14 +147,15 @@ void PixelCanvas::mouseMoveEvent(QMouseEvent *event)
         //check if over a pixel
         if(getPixelPath(i).contains(event->pos())) {
 //            //if clicking a button change the pixel color
-//            if (event->buttons() & Qt::LeftButton){
+            if (event->buttons() & Qt::LeftButton){
 //                //change pixel color
-//                m_pixelList[i].setPixelColor(mySelectedColor);
+                m_pixelList[i].setPixelColor(mySelectedColor);
+                qDebug() << "my selected color" << mySelectedColor.name();
 //                //send update to server
 //                QString pixelColor = m_pixelList[i].getPixelColor().name(QColor::HexRgb);
 //                m_requestManager->setPixel(i, pixelColor);
-
-//            }
+                update();
+            }
 
             //if hovering over new pixel, change outline
             if(myCurrentPixel != i){

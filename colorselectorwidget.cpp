@@ -8,7 +8,7 @@
 #include <QPushButton>
 
 ColorSelectorWidget::ColorSelectorWidget(QWidget* parent) :
-    QWidget(parent)
+    QWidget(parent), pixelCanvas(new PixelCanvas())
 {
     QWidget* colorSelectorWidget = new QWidget(this);
 
@@ -34,7 +34,7 @@ void ColorSelectorWidget::selectColor() {
         qDebug() << "Color Choosen : " << color.name();
         updateButtonColor(color.name());
         //update the selected color on pixelCanvas
-        pixelCanvas->changeSelectedColor(color);
+        pixelCanvas->changeSelectedColor(color.name());
     }
 }
 
