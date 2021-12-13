@@ -5,7 +5,7 @@
 #include <qtimer.h>
 
 #include "pixelcanvas.h"
-#include "colorselectorwidget.h"
+#include "optionswidget.h"
 #include "ChatWidget.h"
 #include "RequestManager.h"
 
@@ -22,7 +22,7 @@ private:
     QTimer *m_pollingTimer;
     RequestManager *m_requestManager;
     PixelCanvas *m_pixelcanvas;
-    ColorSelectorWidget *m_colorselectorwidget;
+    OptionsWidget *m_optionswidget;
     ChatWidget* m_chatWidget;
 
 public slots:

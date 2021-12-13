@@ -22,7 +22,7 @@ public:
     void resetPixelOutline(int); //reset a pixel's outline color
     void changeSelectedColor(QString); //change the color we have in hand
     QPainterPath getPixelPath(int);
-    QColor mySelectedColor = Qt::white; //color which is selected
+    QColor mySelectedColor = Qt::black; //color which is selected
     int myCurrentPixel = 0; //pixel currently hovering over
 protected:
     void mousePressEvent(QMouseEvent *event) override;
@@ -35,7 +35,7 @@ private:
     QList<PixelObject> m_pixelList;
     int m_pixelRez = 1024;
     int m_pixelSize = 32;
-    QColor m_hoverOutlineColor = Qt::lightGray; //color of the outline of the pixel we are hovering over
+    QColor m_hoverOutlineColor = Qt::darkGray; //color of the outline of the pixel we are hovering over
     QColor m_gridColor = Qt::transparent;
     QImage m_image; //eventual image output
     bool m_mouseIsPressed; //true if user presses mouse click
