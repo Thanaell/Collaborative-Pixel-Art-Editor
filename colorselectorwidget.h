@@ -17,12 +17,16 @@ signals:
     void colorChanged(QString color);
 private slots:
     void selectColor();
+    void eraseColor();
 private:
     QVBoxLayout *m_colorsLayout;
-    QString m_buttonStyle;
-    QPushButton *m_button;
+    QString m_colorButtonStyle;
+    QPushButton *m_colorButton;
+    QString m_eraseButtonStyle;
+    QPushButton *m_eraseButton;
     QLabel *m_colorLabel;
     void updateButtonColor(QColor);
+    QColor m_lastSelectedColor;
     PixelCanvas *m_pixelCanvas;
 };
 

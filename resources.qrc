@@ -4,5 +4,7 @@
         <file>Images/quit.png</file>
         <file>Images/save.png</file>
         <file>Images/transparent.png</file>
+        <file>Style/customStyle.qss</file>
+        <file>Images/eraser.png</file>
     </qresource>
 </RCC>

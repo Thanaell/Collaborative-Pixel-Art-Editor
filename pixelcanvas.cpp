@@ -35,6 +35,12 @@ PixelCanvas::PixelCanvas(QWidget *parent, RequestManager *requestManager)
         col++;
     }
 
+    //TEST last few updated
+//    updatePixelOutline(0, "#D3D3D3");
+//    updatePixelOutline(1, "#D3D3D3");
+//    updatePixelOutline(2, "#D3D3D3");
+//    updatePixelOutline(100, "#D3D3D3");
+
     //display update
     update();
 }
@@ -112,7 +118,6 @@ void PixelCanvas::resetPixelOutline(int pixelNum) {
 
 void PixelCanvas::changeSelectedColor(QString selectedColor) {
     mySelectedColor = QColor(selectedColor);
-    qDebug() << "update selected color: " << mySelectedColor.name();
 }
 
 //override resize event whenever the canvas is resized
@@ -135,7 +140,6 @@ void PixelCanvas::mousePressEvent(QMouseEvent *event)
             //check if over a pixel
             if(getPixelPath(i).contains(event->pos())) {
                 //change pixel color
-                qDebug()<<"changing pixel color "<< mySelectedColor.name();
                 m_pixelList[i].setPixelColor(mySelectedColor);
                 //send update to server
                 QString pixelColor = m_pixelList[i].getPixelColor().name(QColor::HexRgb);
@@ -153,12 +157,11 @@ void PixelCanvas::mouseMoveEvent(QMouseEvent *event)
     for (int i = 0; i < m_pixelList.size(); i++) {
         //check if over a pixel
         if(getPixelPath(i).contains(event->pos())) {
-//            //if clicking a button change the pixel color
+            //if clicking a button change the pixel color
             if (event->buttons() & Qt::LeftButton){
-//                //change pixel color
+                //change pixel color
                 m_pixelList[i].setPixelColor(mySelectedColor);
-                qDebug() << "my selected color" << mySelectedColor.name();
-//                //send update to server
+                //send update to server
                 QString pixelColor = m_pixelList[i].getPixelColor().name(QColor::HexRgb);
                 m_requestManager->setPixel(i, pixelColor);
                 update();
