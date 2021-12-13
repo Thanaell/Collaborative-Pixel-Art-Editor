@@ -2,6 +2,8 @@
 #define PIXELCANVAS_H
 
 #include "pixelobject.h"
+#include "RequestManager.h"
+
 #include <QObject>
 #include <QWidget>
 #include <QPixmap>
@@ -14,11 +16,13 @@ class PixelCanvas : public QWidget
 public:
     PixelCanvas(QWidget *parent = nullptr);
     ~PixelCanvas();
-    void updatePixel();//update the pixel
-    void changeFillColor(QColor); //change the color we have in hand
+    void updatePixelColor(int, QString); //update a pixel color
+    void updatePixelOutline(int, QString); //update a pixel's outline color
+    void resetPixelOutline(int); //reset a pixel's outline color
+    void changeSelectedColor(QColor); //change the color we have in hand
     QPainterPath getPixelPath(int);
-    QColor myFillColor = Qt::white; //color of mypixel
-    int myCurrentPixel = 0; //pixel (0-m_pixelRez) user hovers over
+    QColor mySelectedColor = Qt::white; //color which is selected
+    int myCurrentPixel = 0; //pixel currently hovering over
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;
@@ -28,10 +32,11 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
+    RequestManager *m_requestManager;
+
     QList<PixelObject> m_pixelList;
     int m_pixelRez = 1024;
     int m_pixelSize = 32;
-    int m_hoverPixel; //pixel (0-m_pixelRez) user is hovering over
     QColor m_hoverOutlineColor = Qt::lightGray; //color of the outline of the pixel we are hovering over
     QColor m_gridColor = Qt::transparent;
     QImage m_image; //eventual image output

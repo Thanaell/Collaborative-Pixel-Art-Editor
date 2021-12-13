@@ -25,11 +25,10 @@ void RequestManager::getAllData()
     });
 }
 
-void RequestManager::setPixel(const int x, const int y, const QString color)
+void RequestManager::setPixel(const int id, const QString color)
 {
     QJsonObject pixelObject{
-        {"x", x},
-        {"y", y},
+        {"id", id},
         {"color", color}
     };
 

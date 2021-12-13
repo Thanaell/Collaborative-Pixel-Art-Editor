@@ -32,7 +32,7 @@ PixelArtEditor::PixelArtEditor(QWidget* parent) :
     );
 
     // Test for setting pixel
-    //m_requestManager->setPixel(3, 2, "F74521");
+    //m_requestManager->setPixel(2, "F74521");
 }
 
 //called 3 times a second -> POLLING_COOLDOWN

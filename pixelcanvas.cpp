@@ -10,7 +10,8 @@
 #include <QDebug>
 
 PixelCanvas::PixelCanvas(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_requestManager(new RequestManager())
 {
     QDesktopWidget dw;
     this->setFixedSize(m_pixelRez,m_pixelRez); //set fixed size of canvas
@@ -87,13 +88,23 @@ void PixelCanvas::paintEvent(QPaintEvent *) {
     }
 }
 
-void PixelCanvas::updatePixel() {
-    //update the pixel's color in the Qlist m_pixelList
-
+void PixelCanvas::updatePixelColor(int pixelNum, QString color) {
+    //update the pixel's color
+    m_pixelList[pixelNum].setPixelColor(QColor(color));
 }
 
-void PixelCanvas::changeFillColor(QColor fillColor) {
-    myFillColor = fillColor;
+void PixelCanvas::updatePixelOutline(int pixelNum, QString color) {
+    //update the pixel's outline color
+    m_pixelList[pixelNum].setPixelOutlineColor(QColor(color));
+}
+
+void PixelCanvas::resetPixelOutline(int pixelNum) {
+    //rest the pixel's outline to transparent
+    m_pixelList[pixelNum].setPixelOutlineColor(m_gridColor);
+}
+
+void PixelCanvas::changeSelectedColor(QColor selectedColor) {
+    mySelectedColor = selectedColor;
 }
 
 //override resize event whenever the canvas is resized
@@ -126,9 +137,13 @@ void PixelCanvas::mouseMoveEvent(QMouseEvent *event)
         if(getPixelPath(i).contains(event->pos())) {
             PixelObject pixel = m_pixelList.at(i);
 
-//            //if clicking a button change their colors
+//            //if clicking a button change the pixel color
 //            if (event->buttons() & Qt::LeftButton){
-//                //change their colors
+//                //change pixel color
+//                m_pixelList[i].setPixelColor(myFillColor);
+//                //send update to server
+//                QString pixelColor = m_pixelList[i].getPixelColor().name(QColor::HexRgb);
+//                m_requestManager->setPixel(i, pixelColor);
 
 //            }
 

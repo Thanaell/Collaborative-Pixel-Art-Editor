@@ -17,7 +17,7 @@ public:
     void getAllData();
     
 public slots:
-    void setPixel(const int x, const int y, const QString color);
+    void setPixel(const int id, const QString color);
     void addMessage(const QString message);
     void resetChat();
     void resetImage();
