@@ -59,6 +59,13 @@ ChatWidget::ChatWidget(QWidget* parent) :
     m_scrollArea->setWidget(messagesWidget);
     m_scrollArea->setWidgetResizable(true);
     m_scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    QObject::connect(m_scrollArea->verticalScrollBar(), &QScrollBar::rangeChanged, [this](int min, int max) {
+        (void)min;
+        if (max > m_scrollBarMax) m_scrollArea->verticalScrollBar()->setValue(max);
+        m_scrollBarMax = max;
+        }
+    );
+
 
     QWidget* writeMessageWidget = new QWidget(this);
     QHBoxLayout* writeMessageLayout = new QHBoxLayout(writeMessageWidget);
@@ -80,22 +87,10 @@ ChatWidget::ChatWidget(QWidget* parent) :
 
 }
 void ChatWidget::setMessages(std::vector<QString> messages) {
-
-    //TODO : better to only go from last received
-  
     clearLayout(*m_messagesLayout);
-    int newMessageCount = 0;
     for (auto message : messages) {
-        newMessageCount++;
         auto messageLabel = new QLabel("\n " +message + "\n", this);
         messageLabel->setAlignment(Qt::AlignVCenter);
         m_messagesLayout->addWidget(messageLabel);
     }
-    
-    if (newMessageCount != m_messageCount){
-        m_scrollArea->verticalScrollBar()->setValue(m_scrollArea->verticalScrollBar()->maximum());
-        m_messageCount = newMessageCount;
-    }
-    //m_scrollArea->verticalScrollBar()->setValue(m_scrollArea->verticalScrollBar()->maximum());
 }
-
