@@ -3,5 +3,6 @@
         <file>Images/open.png</file>
         <file>Images/quit.png</file>
         <file>Images/save.png</file>
+        <file>Images/transparent.png</file>
     </qresource>
 </RCC>
