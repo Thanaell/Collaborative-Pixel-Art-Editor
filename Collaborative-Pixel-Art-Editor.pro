@@ -13,12 +13,16 @@ SOURCES += \
     PixelArtEditor.cpp \
     RequestManager.cpp \
     main.cpp \
-    pixelcanvas.cpp
+    pixelcanvas.cpp \
+    ChatWidget.cpp \
+    pixelobject.cpp
 
 HEADERS += \
     PixelArtEditor.h \
     RequestManager.h \
-    pixelcanvas.h
+    pixelcanvas.h \
+    ChatWidget.h \
+    pixelobject.h
 
 FORMS += \
     PixelArtEditor.ui
