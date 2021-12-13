@@ -11,7 +11,7 @@ public:
 private:
 	QVBoxLayout *m_messagesLayout;
 	QScrollArea* m_scrollArea;
-	int m_messageCount;
+	int m_scrollBarMax;
 
 signals:
 	void messageSent(QString);

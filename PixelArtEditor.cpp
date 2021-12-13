@@ -57,7 +57,7 @@ void PixelArtEditor::refreshAllData(const QJsonObject data)
 
     std::vector<QString> messages;
     for (auto message : chat.toList()) {
-        qDebug()<<message;
+        //qDebug()<<message;
         messages.push_back(message.toString());
     }
     m_chatWidget->setMessages(messages);

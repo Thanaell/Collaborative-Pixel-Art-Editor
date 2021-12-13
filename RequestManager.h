@@ -24,8 +24,6 @@ public slots:
 
 private:
     const QString API_PATH = "https://pixel-art.undeb.io";
-//    const QString API_PATH = "http://127.0.0.1:8080";
-
     QNetworkAccessManager *m_manager;
 
 signals:
