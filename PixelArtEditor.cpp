@@ -18,9 +18,10 @@ PixelArtEditor::PixelArtEditor(QWidget* parent) :
     QHBoxLayout* mainLayout = new QHBoxLayout(centralWidget);
     QVBoxLayout *rightLayout = new QVBoxLayout();
     mainLayout->addWidget(m_pixelcanvas);
+    mainLayout->addLayout(rightLayout);
     rightLayout->addWidget(m_optionswidget);
     rightLayout->addWidget(m_chatWidget);
-    mainLayout->addLayout(rightLayout);
+    
     QObject::connect(m_chatWidget, &ChatWidget::messageSent, m_requestManager, &RequestManager::addMessage);
 
 

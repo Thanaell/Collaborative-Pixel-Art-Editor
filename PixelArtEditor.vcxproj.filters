@@ -41,7 +41,7 @@
     <ClCompile Include="pixelobject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="colorselectorwidget.cpp">
+    <ClCompile Include="optionswidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -58,7 +58,7 @@
     <QtMoc Include="ChatWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="colorselectorwidget.h">
+    <QtMoc Include="optionswidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

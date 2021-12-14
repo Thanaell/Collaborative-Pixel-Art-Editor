@@ -12,20 +12,23 @@
 OptionsWidget::OptionsWidget(QWidget* parent, PixelCanvas *pixelCanvas) :
     QWidget(parent)
 {
+    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
+    QHBoxLayout* mainLayout = new QHBoxLayout(this);
     QWidget* colorSelectorWidget = new QWidget(this);
+    mainLayout->addWidget(colorSelectorWidget);
     m_pixelCanvas = pixelCanvas;
 
-    m_colorButton = new QPushButton;
+    m_colorButton = new QPushButton(this);
     m_colorButton->setFixedSize(QSize(62, 62));
 
-    m_colorLabel = new QLabel();
+    m_colorLabel = new QLabel(this);
 
     m_eraseButton = new QPushButton;
-    m_eraseButton->setIcon(QIcon(":/Images/eraser.png"));
+    m_eraseButton->setIcon(QIcon("Images/eraser.png"));
     m_eraseButton->setIconSize(QSize(62, 62));
 
     m_saveButton = new QPushButton;
-    m_saveButton->setIcon(QIcon(":/Images/save.png"));
+    m_saveButton->setIcon(QIcon("Images/save.png"));
     m_saveButton->setIconSize(QSize(62, 62));
 
 
@@ -36,7 +39,7 @@ OptionsWidget::OptionsWidget(QWidget* parent, PixelCanvas *pixelCanvas) :
     colorsArea->addWidget(m_colorLabel);
     colorsArea->addSpacing(15);
     colorsArea->addWidget(m_eraseButton);
-    colorsArea->addSpacing(40);
+    colorsArea->addStretch();
     colorsArea->addWidget(m_saveButton);
     this->setMinimumHeight(100); //set min height of color selector
 
